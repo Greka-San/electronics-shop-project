@@ -1,4 +1,3 @@
-"""Здесь надо написать тесты с использованием pytest для модуля item."""
 from src.item import Item
 
 
@@ -13,3 +12,14 @@ def test_apply_discount():
     example.pay_rate = 0.5
     example.apply_discount()
     assert example.price == 15_000
+
+
+def test_instantiate_from_csv():
+    Item.instantiate_from_csv('../src/items.csv')
+    assert len(Item.all) == 5
+
+
+def test_string_to_number():
+    assert Item.string_to_number("5") == 5
+    assert Item.string_to_number("5.9") == 5
+
