@@ -1,7 +1,7 @@
 from src.item import Item
 
 
-example = Item("Телевизор", 30_000, 10)
+example = Item('Телевизор', 30_000, 10)
 
 
 def test_calculate_total_price():
@@ -23,3 +23,12 @@ def test_string_to_number():
     assert Item.string_to_number("5") == 5
     assert Item.string_to_number("5.9") == 5
 
+
+def test_repr():
+    item1 = Item("Смартфон", 10000, 20)
+    assert repr(item1) == "Item('Смартфон', 10000, 20)"
+
+
+def test_str():
+    item1 = Item("Смартфон", 10000, 20)
+    assert str(item1) == 'Смартфон'
