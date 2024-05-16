@@ -66,8 +66,12 @@ class Item:
             if number.isdigit():
                 return int(number)
 
+    def __add__(self, other):
+        if isinstance(other, Item):
+            return int(self.quantity) + int(other.quantity)
+        raise ValueError('Складывать можно только объекты классов Phone или Item')
+
 
 # csvfile = '../src/items.csv'
 # Item.instantiate_from_csv(csvfile)
 # print(Item.all)
-
