@@ -1,5 +1,5 @@
 from src.item import Item
-
+from src.phone import Phone
 
 example = Item('Телевизор', 30_000, 10)
 
@@ -32,3 +32,9 @@ def test_repr():
 def test_str():
     item1 = Item("Смартфон", 10000, 20)
     assert str(item1) == 'Смартфон'
+
+
+def test_add():
+    phone = Phone("iPhone 14", 120_000, 5, 2)
+    item = Item('Телевизор', 30_000, 10)
+    assert item + phone == 15
