@@ -1,4 +1,4 @@
-from item import Item
+from src.item import Item
 
 
 class Phone(Item):
@@ -11,7 +11,7 @@ class Phone(Item):
         return f"{self.__class__.__name__}(\'{self.name}\', {self.price}, {self.quantity}, {self.number_of_sim})"
 
     def __str__(self):
-        return f"{self.__class__.__name__}(\'{self.name}\', {self.price}, {self.quantity}, {self.number_of_sim})"
+        return f'{self.name}'
 
     @property
     def number_of_sim(self):
