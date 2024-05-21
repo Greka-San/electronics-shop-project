@@ -53,12 +53,19 @@ class Item:
             self.__name = name
 
     @classmethod
-    def instantiate_from_csv(cls, csvfile):
-        Item.all.clear()
-        with open(csvfile, newline='') as csvfile:
-            reader = csv.DictReader(csvfile)
-            for row in reader:
-                cls(str(row['name']), float(row['price']), int(row['quantity']))
+    def instantiate_from_csv(cls, csvfile='../src/items.csv'):
+        try:
+            Item.all.clear()
+            with open(csvfile, newline='') as csvfile:
+                reader = csv.DictReader(csvfile)
+                for row in reader:
+                    cls(str(row['name']), float(row['price']), int(row['quantity']))
+
+        except FileNotFoundError:
+            raise FileNotFoundError("Отсутствует файл item.csv")
+        else:
+            if len(cls.all) != 5:
+                raise InstantiateCSVError('Файл item.csv поврежден')
 
     @staticmethod
     def string_to_number(number_string):
@@ -72,6 +79,8 @@ class Item:
         raise ValueError('Складывать можно только объекты классов Phone или Item')
 
 
-# csvfile = '../src/items.csv'
-# Item.instantiate_from_csv(csvfile)
-# print(Item.all)
+class InstantiateCSVError(Exception):
+    pass
+
+Item.instantiate_from_csv()
+print(Item.all)

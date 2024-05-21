@@ -1,3 +1,4 @@
+import pytest
 from src.item import Item
 from src.phone import Phone
 
@@ -38,3 +39,8 @@ def test_add():
     phone = Phone("iPhone 14", 120_000, 5, 2)
     item = Item('Телевизор', 30_000, 10)
     assert item + phone == 15
+
+
+def test_exception():
+    with pytest.raises(FileNotFoundError):
+        Item.instantiate_from_csv('../src/src/items.csv')
